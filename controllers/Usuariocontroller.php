@@ -19,7 +19,7 @@ class UsuarioController{
     }
 
     public function autenticarUsuario(){
-        $dados = json_encode(file_get_contents("php://input"), true);
+        $dados = json_decode(file_get_contents("php://input"), true);
         $usuario = $this->usuario->autenticarUsuario($dados['login'], $dados['senha']);
 
 

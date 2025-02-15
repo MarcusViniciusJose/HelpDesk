@@ -28,8 +28,8 @@ class Usuario{
         $resultado = $stmt->get_result()->fetch_assoc();
 
 
-        if ($resultado && passwrod_verify($senha, $resultado['senha'])){
-            return $resultado
+        if ($resultado && password_verify($senha, $resultado['senha'])){
+            return $resultado;
         }
         return false;
     }

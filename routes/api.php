@@ -1,7 +1,7 @@
 <?php   
 
 header("Content-type: application/json");
-require_once __DIR__ . '/../controllers/UsuarioController.php';
+require_once __DIR__ . '/../controllers/Usuariocontroller.php';
 
 $usuarioController = new UsuarioController();
 
@@ -9,9 +9,9 @@ $requestUri = explode("?", $_SERVER["REQUEST_URI"], 2)[0];
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if($requestUri == "/api/usuario/criar"){
+    if($requestUri == "/helpdesk/routes/api.php/usuario/criar"){
         $usuarioController->criarUsuario();
-    }elseif($requestUri == "/api/usuario/login"){
+    }elseif($requestUri == "/helpdesk/routes/api.php/usuario/login"){
         $usuarioController->autenticarUsuario();
     }else{
         http_response_code(404);
