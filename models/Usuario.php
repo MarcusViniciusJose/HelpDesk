@@ -12,7 +12,7 @@ class Usuario{
 
     public function criarUsuario($nome, $email, $login, $senha, $tipo){
         $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO $this->table (nome, email, login, senha, tipo)
+        $sql = "INSERT INTO $this->table (nome, email, login, senha, tipo, criado_em)
                 VALUES (?, ?, ?, ?, ?, NOW())";
         
         $stmt = $this->conn->prepare($sql);

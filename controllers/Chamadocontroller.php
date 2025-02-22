@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Chamado.php';
 
-class chamadoController{
+class ChamadoController{
     private $chamadoModel;
 
     public function __construct(){
@@ -12,7 +12,7 @@ class chamadoController{
     public function criarChamado(){
         $dados = json_decode(file_get_contents("php://input"), true);
 
-        if(!isset($dados['id_usuario_criador'], $dados['id_departamento'], $dados['categori'], $dados['titulo'], $dados['descricao'], $dados['prioridade'])){
+        if(!isset($dados['id_usuario_criador'], $dados['id_departamento'], $dados['id_categoria'], $dados['titulo'], $dados['descricao'], $dados['prioridade'])){
             http_response_code(400);
             echo json_encode(["erro" => "Dados incompleto"]);
             return;

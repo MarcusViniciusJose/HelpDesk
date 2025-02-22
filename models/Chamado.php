@@ -6,22 +6,17 @@ class Chamado{
     private $table = 'chamado';
 
     public function __construct(){
-        $this->conn = database::getConnection();
+        $database = new Database();
+        $this->conn = $database->getConnection();
     }
 
 
     public function criarChamado($id_usuario_criador, $id_departamento, $id_categoria, $titulo, $descricao, $prioridade){
-        $query = "INSERT INTO $this->table (id_usuario_criador, id_departamento, id_categoria, titulo, descricao, prioridade
-                  VALUES (:id_usuario_criador, :id_departamento, :id_categoria, :titulo, :descricao, :prioridade)";
+        $query = "INSERT INTO $this->table (id_usuario_criador, id_departamento, id_categoria, titulo, descricao, prioridade)
+                  VALUES (?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id_usuario_criador', $id_usuario_criador);     
-        $stmt->bindParam(':id_departamento', $id_departamento);
-        $stmt->bindParam(':id_categoria', $id_categoria);
-        $stmt->bindParam(':titulo', $titulo);
-        $stmt->bindParam(':descricao', $descricao);
-        $stmt->bindParam(':prioridade', $prioridade);
-        
+        $stmt->bind_param("iiisss", $id_usuario_criador, $id_departamento, $id_categoria, $titulo, $descricao, $prioridade);
         return $stmt->execute();
     }
 
